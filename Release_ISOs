@@ -13,13 +13,19 @@ if [ "$ROS_ARCH" = "" ]; then
 	exit 1
 fi
 
+if [ "$ROS_ARCH" = "i386" ]; then
+	ROS_PRINTARCH="x86"
+else
+	ROS_PRINTARCH="$ROS_ARCH"
+fi
+
 # Constants
 ROOTDIR="$PWD"
 OUTPUTDIR="output-MinGW-i386"
-BOOTCDISO="ReactOS-${version}.iso"
-BOOTCDARCHIVE="ReactOS-${version}-iso.7z"
-LIVECDISO="ReactOS-${version}-Live.iso"
-LIVECDARCHIVE="ReactOS-${version}-live.7z"
+BOOTCDISO="ReactOS-${version}-${ROS_PRINTARCH}-gcc-lin.iso"
+BOOTCDARCHIVE="ReactOS-${version}-iso-${ROS_PRINTARCH}-gcc-lin.7z"
+LIVECDISO="ReactOS-${version}-Live-${ROS_PRINTARCH}-gcc-lin.iso"
+LIVECDARCHIVE="ReactOS-${version}-live-${ROS_PRINTARCH}-gcc-lin.7z"
 
 # Start from a clean state
 rm -f "${ROOTDIR}/${BOOTCDARCHIVE}"
